@@ -1,0 +1,22 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  /*테이블 고정*/
+  table-layout: fixed;
+}
+
+th,td {
+  /*셀 너비 고정*/
+  width: 150px;
+}
