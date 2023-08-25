@@ -11,17 +11,20 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [isMod, setIsMod] = useState(false);
   let newData={}
-  useEffect(() => {
+  //마운트되면(처음 웹페이지 입장&새로고침)fetchData호출.
+  useEffect(()=>{
     fetchData();
-  }, [])
+  },[])
   //db데이터를 요청하고, 그 값으로 tableData상태 갱신.
   const fetchData = async () => {
     try {
       const response = await axios.get(SERVER_URL);
-      const data = response.data;
-      setTableData(data);
+      if(response){
+        const data = response.data;
+        setTableData(data);
+      }
     } catch (err) {
-      if (err.response.data.message) alert(err.response.data.message);
+      if (err.response) alert(err.response.data.message);
       else {
         console.log(err);
       }
@@ -32,7 +35,7 @@ function App() {
     try {
       await axios.post(SERVER_URL);
     } catch (err) {
-      if (err.response.data.message) alert(err.response.data.message);
+      if (err.response) alert(err.response.data.message);
       else {
         console.log(err);
       }
